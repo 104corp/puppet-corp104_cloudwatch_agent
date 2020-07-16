@@ -1,7 +1,7 @@
-class cloudwatch_agent::package {
-  if $cloudwatch_agent::package_install {
+class corp104_cloudwatch_agent::package {
+  if $corp104_cloudwatch_agent::package_install {
     package { 'awslogs':
-      ensure => $cloudwatch_agent::package_ensure,
+      ensure => $corp104_cloudwatch_agent::package_ensure,
     }
   } else {
     if !defined(Package['curl']){
@@ -16,8 +16,8 @@ class cloudwatch_agent::package {
     }
 
     exec { 'install-awslogs':
-      command => "env && curl ${cloudwatch_agent::installer_url} |\
-        python - -r ${cloudwatch_agent::region} -n -c /tmp/aws.conf",
+      command => "env && curl ${corp104_cloudwatch_agent::installer_url} |\
+        python - -r ${corp104_cloudwatch_agent::region} -n -c /tmp/aws.conf",
       creates => '/var/awslogs/etc/aws.conf',
       cwd     => '/tmp',
       path    => ['/usr/bin', '/usr/local/sbin', '/usr/sbin', '/sbin', '/bin'],

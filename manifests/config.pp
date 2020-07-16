@@ -1,6 +1,6 @@
-class cloudwatch_agent::config {
+class corp104_cloudwatch_agent::config {
 
-  if $cloudwatch_agent::package_install {
+  if $corp104_cloudwatch_agent::package_install {
     $awslogs_config_dir = '/etc/awslogs'
   } else {
     $awslogs_config_dir = '/var/awslogs/etc'

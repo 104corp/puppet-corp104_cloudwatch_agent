@@ -1,18 +1,18 @@
-# cloudwatch_agent
+# corp104_cloudwatch_agent
 
 #### Table of Contents
 
 1. [Module Description - What the module does and why it is useful](#module-description)
-2. [Setup - The basics of getting started with cloudwatch_agent](#setup)
+2. [Setup - The basics of getting started with corp104_cloudwatch_agent](#setup)
     * [Setup requirements](#setup-requirements)
-    * [Beginning with cloudwatch_agent](#beginning-with-cloudwatch_agent)
+    * [Beginning with corp104_cloudwatch_agent](#beginning-with-corp104_cloudwatch_agent)
 3. [Usage - Configuration options and additional functionality](#usage)
 4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 
 ## Module Description
 
-The cloudwatch_agent module installs configures and manages the AWS
+The corp104_cloudwatch_agent module installs configures and manages the AWS
 [Cloudwatch Logs Agent](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/EC2NewInstanceCWL.html).
 
 ## Setup
@@ -28,16 +28,16 @@ IAM oles is outside the scope of this document, but there's a nice tutorial that
 starts in step 2 in the (Cloudwatch Logs Agent docs)[http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/EC2NewInstanceCWL.html] (step 19 is different if you're using puppet).
 
 
-### Beginning with cloudwatch_agent
+### Beginning with corp104_cloudwatch_agent
 
 If you want to install the logs agent, and are in the us-east-1 region, you can run
-`include ::cloudwatch_agent`. By default, the agent is installed using the python installer
+`include ::corp104_cloudwatch_agent`. By default, the agent is installed using the python installer
 but it can be overridden (to use a package), though the default install doesn't monitor
 any logs.
 
 Non us-east-1 regions can be used via the `region` parameter:
 ~~~
-class { 'cloudwatch_agent':
+class { 'corp104_cloudwatch_agent':
   region => 'us-west-1',
 }
 ~~~
@@ -47,11 +47,11 @@ class { 'cloudwatch_agent':
 Cloudwatch needs a little bit of information about each log file (like date format)
 so that it can be parsed out and grouped in a meaningful way by AWS.
 
-After setting up the logs agent, logs can be specified using the `cloudwatch_agent::log`
+After setting up the logs agent, logs can be specified using the `corp104_cloudwatch_agent::log`
 defined type. Sending `/var/log/syslog` would look like (all parameters are defaults):
 
 ~~~
-cloudwatch_agent::log { '/var/log/syslog':
+corp104_cloudwatch_agent::log { '/var/log/syslog':
   datetime_format  => '%b %d %H:%M:%S',
   log_stream_name  => '{instance_id}',
   buffer_duration  => '5000',
@@ -65,17 +65,17 @@ cloudwatch_agent::log { '/var/log/syslog':
 
 #### Public Classes
 
-* `cloudwatch_agent`: Installs the cloudwatch log agent
+* `corp104_cloudwatch_agent`: Installs the cloudwatch log agent
 
 #### Private Classes
 
-* `cloudwatch_agent::config`: Sets the awslogs service configuration
-* `cloudwatch_agent::package`: Install the agent package
-* `cloudwatch_agent::service`: Manage the awslogs service
+* `corp104_cloudwatch_agent::config`: Sets the awslogs service configuration
+* `corp104_cloudwatch_agent::package`: Install the agent package
+* `corp104_cloudwatch_agent::service`: Manage the awslogs service
 
 ### Parameters
 
-#### cloudwatch_agent
+#### corp104_cloudwatch_agent
 
 ##### `package_install`
 
@@ -107,11 +107,11 @@ Where the agent should store its state. Defaults to `/var/awslogs/state/agent-st
 
 ##### `logs`
 
-A hash of `::cloudwatch_agent::log` resources that should be created.
+A hash of `::corp104_cloudwatch_agent::log` resources that should be created.
 
 ### Defines
 
-#### cloudwatch_agent::log
+#### corp104_cloudwatch_agent::log
 
 Full details on what the cloudwatch agent does with these parameters
 is available in the [agent reference](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/AgentReference.html) (not all parameters are supported by this module yet).

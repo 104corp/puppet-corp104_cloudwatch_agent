@@ -1,12 +1,12 @@
 {
-  "name": "pcfens-cloudwatch_agent",
-  "version": "0.1.1",
-  "author": "pcfens",
+  "name": "104corp-corp104_cloudwatch_agent",
+  "version": "1.0.0",
+  "author": "104corp",
   "license": "Apache-2.0",
-  "summary": "A module to and manage the AWS Cloudwatch log agent.",
-  "source": "https://github.com/pcfens/puppet-cloudwatch_agent",
-  "project_page": "https://github.com/pcfens/puppet-cloudwatch_agent",
-  "issues_url": "https://github.com/pcfens/puppet-cloudwatch_agent/issues",
+  "summary": "Manage the AWS Cloudwatch agent.",
+  "source": "https://github.com/104corp/puppet-corp104_cloudwatch_agent",
+  "project_page": "https://github.com/104corp/puppet-corp104_cloudwatch_agent",
+  "issues_url": "https://github.com/104corp/puppet-corp104_cloudwatch_agent/issues",
   "tags": ["aws", "cloudwatch", "awslogs"],
   "operatingsystem_support": [
     {
@@ -71,7 +71,7 @@
     },
     {
       "name": "puppetlabs/concat",
-      "version_requirement": ">=1.0.0 <2.0.0"
+      "version_requirement": ">=1.0.0 <5.0.0"
     }
   ]
 }

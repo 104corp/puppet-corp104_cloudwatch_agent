@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'cloudwatch_agent::log', :type => :define do
+describe 'corp104_cloudwatch_agent::log', :type => :define do
 
   let :facts do
     {

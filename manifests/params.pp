@@ -1,4 +1,4 @@
-class cloudwatch_agent::params {
+class corp104_cloudwatch_agent::params {
     $package_install = false
     $package_ensure  = present
     $service_ensure  = 'running'
