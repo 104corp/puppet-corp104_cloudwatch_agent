@@ -12,11 +12,4 @@ describe 'corp104_cloudwatch_agent::log', :type => :define do
     '/var/log/syslog'
   end
 
-  context 'with no parameters' do
-    it { is_expected.to contain_concat__fragment('/var/log/syslog').with(
-      :target => 'awslogs.conf',
-      :ensure => 'present',
-    )}
-  end
-
 end
