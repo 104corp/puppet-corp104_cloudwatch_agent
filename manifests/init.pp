@@ -17,11 +17,11 @@ class corp104_cloudwatch_agent (
   validate_string($region, $state_file)
   validate_hash($logs)
 
-  anchor { 'corp104_cloudwatch_agent::begin': } ->
-  class { 'corp104_cloudwatch_agent::package': } ->
-  class { 'corp104_cloudwatch_agent::config': } ->
-  class { 'corp104_cloudwatch_agent::service': } ->
-  anchor { 'corp104_cloudwatch_agent::end': }
+  anchor { 'corp104_cloudwatch_agent::begin': }
+  -> class { 'corp104_cloudwatch_agent::package': }
+  -> class { 'corp104_cloudwatch_agent::config': }
+  -> class { 'corp104_cloudwatch_agent::service': }
+  -> anchor { 'corp104_cloudwatch_agent::end': }
 
   if !empty($logs) {
     create_resources('corp104_cloudwatch_agent::log', $logs)
