@@ -15,9 +15,27 @@ class corp104_cloudwatch_agent::package {
       content => template("${module_name}/aws.conf.erb"),
     }
 
+    $agent_logs_url = "${corp104_cloudwatch_agent::installer_url}/awslogs-agent-setup.py"
+    $agent_depen_url = "${corp104_cloudwatch_agent::installer_url}/AgentDependencies.tar.gz"
+
+    exec { 'download-awslogs-depend':
+      command => "curl $agent_depen_url -O && tar xvf AgentDependencies.tar.gz -C /tmp/",
+      creates => '/tmp/AgentDependencies',
+      cwd     => '/tmp',
+      path    => ['/usr/bin', '/usr/local/sbin', '/usr/sbin', '/sbin', '/bin'],
+      require => [Package['curl'], File['/tmp/aws.conf'] ],
+    }
+
+    exec { 'download-awslogs':
+      command => "curl $agent_logs_url -O",
+      creates => '/tmp/awslogs-agent-setup.py',
+      cwd     => '/tmp',
+      path    => ['/usr/bin', '/usr/local/sbin', '/usr/sbin', '/sbin', '/bin'],
+      require => [Package['curl'], File['/tmp/aws.conf'] ],
+    }
+
     exec { 'install-awslogs':
-      command => "env && curl ${corp104_cloudwatch_agent::installer_url} |\
-        python - -r ${corp104_cloudwatch_agent::region} -n -c /tmp/aws.conf",
+      command => "python /tmp/awslogs-agent-setup.py -r ${corp104_cloudwatch_agent::region} -n -c /tmp/aws.conf --dependency-path /tmp/AgentDependencies",
       creates => '/var/awslogs/etc/aws.conf',
       cwd     => '/tmp',
       path    => ['/usr/bin', '/usr/local/sbin', '/usr/sbin', '/sbin', '/bin'],

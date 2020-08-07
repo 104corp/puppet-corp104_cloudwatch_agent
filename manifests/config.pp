@@ -7,7 +7,6 @@ class corp104_cloudwatch_agent::config {
   }
 
   concat { 'awslogs.conf':
-    ensure => present,
     path   => "${awslogs_config_dir}/awslogs.conf",
     notify => Service['awslogs'],
   }
@@ -18,4 +17,9 @@ class corp104_cloudwatch_agent::config {
     order   => '01',
   }
 
+  file { "${awslogs_config_dir}/proxy.conf":
+    ensure  => 'file',
+    content => template("${module_name}/proxy.conf.erb"),
+    notify  => Service['awslogs'],
+  }
 }

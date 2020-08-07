@@ -12,6 +12,7 @@ class corp104_cloudwatch_agent (
   $region          = $corp104_cloudwatch_agent::params::region,
   $state_file      = $corp104_cloudwatch_agent::params::state_file,
   $logs            = {},
+  Optional[String] $http_proxy = '',
 ) inherits corp104_cloudwatch_agent::params {
 
   validate_string($region, $state_file)

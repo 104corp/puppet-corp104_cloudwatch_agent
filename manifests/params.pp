@@ -5,5 +5,5 @@ class corp104_cloudwatch_agent::params {
     $service_enable  = true
     $region          = 'us-east-1'
     $state_file      = '/var/awslogs/state/agent-state'
-    $installer_url   = 'https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py'
+    $installer_url   = 'https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/'
 }
