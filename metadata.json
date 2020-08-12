@@ -1,6 +1,6 @@
 {
   "name": "104corp-corp104_cloudwatch_agent",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "104corp",
   "license": "Apache-2.0",
   "summary": "Manage the AWS Cloudwatch agent.",

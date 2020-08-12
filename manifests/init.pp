@@ -20,7 +20,7 @@ class corp104_cloudwatch_agent (
 
   anchor { 'corp104_cloudwatch_agent::begin': }
   -> class { 'corp104_cloudwatch_agent::package': }
-  -> class { 'corp104_cloudwatch_agent::config': }
+  -> class { 'corp104_cloudwatch_agent::config': http_proxy => $http_proxy }
   -> class { 'corp104_cloudwatch_agent::service': }
   -> anchor { 'corp104_cloudwatch_agent::end': }
 
